@@ -1,7 +1,6 @@
 package core;
 
-import java.time.LocalDate;
-
+import java.time.LocalDate; // The {@code SharePrice} class encapsulates the stock price information for a specific date.
 public class SharePrice {
     private LocalDate date;
     private double open;
