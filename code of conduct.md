@@ -129,4 +129,6 @@ Ref: [https://www.mozilla.org/en-US/about/governance/policies/participation/]
 Signature : Patryk Adamczyk (ADA23592037) 
 Date signed : 18/02/2025
 
+Signature : Enoch emron (EMR23592619) 
+Date signed : 18/02/2025
 
