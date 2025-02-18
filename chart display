@@ -1,0 +1,13 @@
+package ui;
+
+import core.SharePrice;
+import java.util.List;
+
+/**
+ * Displays charts for stock prices.
+ */
+public class ChartDisplay {
+    public void displayPriceChart(List<SharePrice> prices) {
+        // Chart rendering implementation
+    }
+}
