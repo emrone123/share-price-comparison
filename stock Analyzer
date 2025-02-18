@@ -1,0 +1,10 @@
+package core;
+
+import java.util.List;
+
+/**
+ * Provides methods to analyze stock data.
+ */
+public class StockAnalyzer {
+    // Analysis methods
+}
