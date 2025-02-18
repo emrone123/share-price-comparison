@@ -22,21 +22,16 @@ As a financial analyst,I want to view time-series graphs of daily share prices f
 Requirements Clearly Identified and Scoped (5 Marks)
 The requirements for the Share Price Comparison Web Application have been clearly identified and scoped to ensure the project remains focused and deliverable within the defined constraints. The primary functional requirements include:
 User Authentication:
-a.	As an investor, the need to register and log in to the website application to access personal data and preferences.
-Data Storage:
-b.	As a corporate decision maker, the need for the website application to store retrieved data locally for offline access.
-Graph Display:
-c.	As a student, the need to view time-series graphs of daily share prices for one or two companies to compare their performance.
-Input Validation:
-d.	As an investor, the need for the application to validate inputs to ensure they are correct and logical.
-Error Handling:
-e.	As a market researcher, the need for the application to handle errors gracefully and provide meaningful error messages.
-User Interface:
-f.	As an educator, the need for the application to have an intuitive and responsive interface to use it easily on any device.
-User Preferences:
-g.	As a corporate decision maker, the need to customize preferences and save custom graphs for future reference.
-Security:
-h.	As a financial analyst, the need for the application to be secure and protect data privacy.
+As an investor, I want to register and log in to the website application so that I can access my personal data.
+As a corporate decision maker, I want the website application to store the retrieved data so I can access it.
+As a market researcher, I want the application to handle errors and provide error messages.
+As a risk manager, I want the application to provide tools for assessing market risks based on historical share price data, 
+and I want to generate custom risk reports that can be easily shared with stakeholders.
+As a financial analyst, I want to view time-series graphs of daily share prices for one or two companies so that I can compare their performance.
+
+
+
+
 
 Requirements Investigated in Detail with Careful Consideration of All Aspects (10 Marks)
 Each requirement has been thoroughly investigated to ensure all aspects are carefully considered and feasible within the project constraints:
@@ -70,5 +65,5 @@ All identified requirements are closely aligned with the project's overall goals
 •	Input Validation: Ensures data integrity by validating user inputs.
 •	Error Handling: Improves user experience by managing errors gracefully and providing clear messages.
 •	User Interface: Enhances usability with an intuitive and responsive design.
-•	User Preferences: Provides flexibility and convenience by allowing customization and saving of preferences and graphs.
+•	User Preferences: Provides flexibility and convenience by allowing customization and saving of preferences and graphs.ddd
 •	Security: Protects user data and ensures compliance with privacy regulations.
