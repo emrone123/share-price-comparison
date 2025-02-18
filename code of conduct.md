@@ -1,6 +1,6 @@
 # Architecture Coursework
 
-Patryk Adamczyk ADA23592037 , Emmanuel Ekow Ennin ENN23590546 , Enoch Emron EMR23592619 , Nahavipusan Sivakumar SIV23578988
+Patryk Adamczyk ADA23592037 , Emmanuel Ekow Ennin ENN23590546 , Enoch Emron EMR23592619 , Nahavipusan Sivakumar SIV23578988 , Mahir Abdulkadir MAH22561292
 
 ## Code of Conduct 
 
@@ -13,21 +13,18 @@ the user most up to date prices and make sure that its fair and we aim to give p
 
 We expect everyone participating in our project and related activities, including the Product Owner, Scrum Master, and Team Member, are subject to this code of conduct.We also exept members of the community, to follow these guidelines in all project areas and related activities.
 
-
 **Respect:**
 
-When interacting with one another, show respect for one another and presume the best. We make an effort to communicate with 
-consideration, empathy and patience.
+During interactions with peers respect must be shown. We try to communicate with patcience and empathy also we try to be considerate with one another.
 
 **Professionalism:** 
 
-Our behaviour and interactions are dedicated to professionalism. This entails being dependable, on time, and dedicated 
-to producing work of the highest calibre.
+We try and make our behavour and interations are done to be as close to professional as possible. This means that the group members have to be dedicated 
 
 **Inclusivity and Diversity:** 
 
 People from various origins and identities are supported and
-welcomed here. This includes:
+welcomed here. 
 
 #Values and principles 
 Background
@@ -49,101 +46,87 @@ Geographic location
 Any other dimension of diversity
 
 **Integrity and Ethics:**
-In every professional encounter, conduct yourself honourably and morally. Act with the community’s best interest in mind and stay clear of 
-conflicts of interest.
+
+Act respectfully and ethically in all of your professional interactions. Avoid conflict between groups and act in the best interests of the community.
 
 **Collaboration:** 
 
-We all want to contribute to a collaborative atmosphere because that cooperation can be extremely effective.
+We all are eager to create a collabarorative atmosphere where the cooperation will be extreamly effective and efficient. 
 
 # Workplace Behaviour
 
 **Positive Work Environment:** 
-Our goal is to provide a welcoming workplace where individuals can freely exchange thoughts 
-and have productive, honest conversations.
+
+Our aim is to create a positive and peaceful work envoroument where all of us could work and focus on the assigned task.
+
 **Conflict Resolution:** 
-Though it is normal to disagree, we must find a positive way to work things out. Openly discuss disagreements
-and cooperate to find solutions that serve the interest of the community when they occur.
+As in a normal work place there are set to be disagreements. However a mutal discussion will be the best way to sort out the dissagreement and then just pick thats the best option.
+
 **Harassment-Free Experience:**
-Any kind of harassment is not tolerated here and should reported as soon as possible. Here are a few 
-examples of what constitutes harassment:
-Making disparaging comments on the values and convictions of an individual, committing deliberate intimidations, following or stalking 
-a person, talking or attempting to take abusive photos or videos, continuously cutting other people off in discussions, making 
-inappropriate physical contact, and displaying unwelcome sexual desire.
+
+Any kind of harassment is not tolerated as soon as someone feels harassed thay should imediatly report it. 
+Here are a few examples of harassment:
+
+Making innapropriate comments, acting wierd around the person additional examples can be Stalking, Following the person and many other.
 
 # Practice
 
-**Meetings:** It aims to ensure that attendance will align with our purpose of cooperative engagement. It is anticipated that agendas be
-issued beforehand and that timelines be observed.
+**Meetings:** This aims to make sure that all of the people that need to attent actually attent this makes sure that everyone is present for mettings. 
 **Communication:** 
-Communicate in a courteous, straightforward, and open manner. it is always better to communicate directly and issues
-should never be discussed behind closed doors, instead they should be brought up with the relevant person or as a group.
+Communicate in a straightforward way make sure that you are reachable and that you dont keep ideas to yourself but share them with collegues.
 **Decisions:** 
-Decisions must be made in an open and cooperative manner, taking into account many viewpoints to improve the project.
+Descicions have to be made in a group and all of the group members have to agree.
 **Confidentiality:** 
-Be mindful of the privacy of conversations and private concerns.
+Be mindful of the privacy and private concers of the other members.
 
 # Reward and Recognition System
 
-We think it is important to acknowledge and honour our members devotion to their work/tasks/jobs. Every member will receive the opportunity
-to decide what they would like to do which the project owner will fulfil sensibly. After every sprint has been completed successfully. 
-Establishing a chance for us to connect and consider our shared experience. This celebration offers an opportunity to assess our strengths
-and areas for improvement while also acknowledging the team’s diligence. 
-
-To nurture a strong feeling of unity and collaboration. Several team building exercises are available from us.
-They vary from going out to eat or taking part in a sport, to fostering a cohesive and encouraging workplace. 
+We believe that it is imports to acknowledge members based on the work that put in and the dedication that they have shown. One of the rewars that we have is that the person that has put in the most amount of effort and dedication can pick the task that they would like to do in the following sprints this shows grattitude and show the group members thats its important to put in work and show them that hard work and decication will be seen and rewarded.
 
 # Accountability and Enforcement
 
 ### Accountability:
 
-Accountability is essential considering it is the foundation of our workspace. We expect that every member will maintain the highest 
-standards of behaviour and fairly contribute to our cooperative objectives. 
+ We expect that every member will show the highest level of maturity and fairly contribute to each sprint. 
 
 ### Punishment System:
 
-Should there be an unfortunate infringement of our Code Of Conduct, a system has been put in place of consequences to deal with the gravity 
-of the act and promote a return to our core beliefs. 
+If there is a case in which one of the goup members breaks our Code of Conduct we have created a consequence plan based on the level rule they break.
 
 As follows: 
 
 ### Minor
 
-violations are mostly inadvertent and have little influence on the project. Correction is the better course of action than punishing. 
+These are little setbacks to the projects. Verbal warning is enough.
 
 These can include:
 
-- Verbal Feedbakc: A private discussion about the specific violation, as well as the reasons behind poor conduct and suggestions for 
-improvement.
-- Performance Plan: A organized plan with expectations for conduct, as well as deadlines and milestones for change, should be implemented 
-for persistent minor infractions.
+- Verbal Feedback: A discussion will be held to talk about the violation that has been made and we will speak about the ways of improvement.
+- Performance Plan: A plan with code of conduct expectations and the deadlines 
 
 ### Moderate
 
-This is where the project may be impacted by moderate transgression, which is more serious and still may stay in a range that allows
-beneficial corrections.
+This is where the procejt can be impacted alot however there is still time for corrections 
 
-- Action: One would have to conduct more study on the subject or conversation they missed on without any reasoning on why they were 
-unable to attend to.
+- Action: The person would have to work overtime on the project and explain to the wholle group why they didnt inform the other goup members.
 
 ### Severe
 
-Actions that are defined as intentional that significantly impact the project
+This is where the project is significantly impacted
 
-- Investigation: To guarentee fairness and acquire all relevant information, a through investigation should be carried out prior to using
-severe measures such as a demotion
-- Documentation: For the purpose of openness and in the event of a disagreement, it is important to record all conclusions, conversations 
-and choices taken during the process.
+- Investigation: Since the problem would be serious we would have to do a serious look in the issue and what is happening before doing more serious actions such as removing the person out of the group
+- Documentation: After each of these encounters its good to record what was discussed. This could help in future problems
 
 # Ask Questions & Feedback
 
-It is recommended for anyone to have questions concerning these guidelines.
+It is important that people ask and have questions regarding the code of conduct so that we can avoid delay in work and conflicts between group members.
 
-To keep improving, our code of conduct has to be subjected to constructive feedback. Feedback from all members is welcome and will be 
-examined for future changes. 
+In order to keep the code of conduct efficient we will discuss as a group what can be improved and what we can add these changes will be applied after further examination.
 
 Ref: [https://www.mozilla.org/en-US/about/governance/policies/participation/]
 (https://www.mozilla.org/en-US/about/governance/policies/participation/)
 
+Signature : Patryk Adamczyk (ADA23592037) 
+Date signed : 18/02/2025
 
 
