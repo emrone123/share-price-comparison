@@ -63,4 +63,43 @@ public class SharePrice {
     public double getClose() {
         return close;
     }
+    
+    /**
+     * Returns a string representation of the SharePrice object.
+     * 
+     * @return A string displaying the stock data for the specific date
+     */
+    @Override
+    public String toString() {
+        return String.format("Date: %s | Open: %.2f | High: %.2f | Low: %.2f | Close: %.2f", 
+                             date, open, high, low, close);
+    }
+
+    /**
+     * Compares this SharePrice object to another object for equality.
+     * 
+     * @param obj The object to compare with
+     * @return true if the objects are equal, false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        SharePrice that = (SharePrice) obj;
+        return Double.compare(that.open, open) == 0 &&
+               Double.compare(that.high, high) == 0 &&
+               Double.compare(that.low, low) == 0 &&
+               Double.compare(that.close, close) == 0 &&
+               date.equals(that.date);
+    }
+
+    /**
+     * Returns a hash code value for the SharePrice object.
+     * 
+     * @return A hash code based on the object's fields
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(date, open, high, low, close);
+    }
 }
