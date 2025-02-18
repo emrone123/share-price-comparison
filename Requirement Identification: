@@ -47,7 +47,7 @@ Solutions: Implement robust password hashing (e.g., bcrypt) and secure session m
 
 **Corporate Decision Maker**
 
-Context: Corporate decision makers require reliable storage and retrieval of historical share price data for analysis.
+Context: Corporate decision makers require reliable storage and retrieval of past share price data for analysis.
 Challenges: Ensuring data integrity and efficient data retrieval, especially with large datasets.
 Solutions: Use a robust relational database with indexing and caching mechanisms to improve performance. Implement regular backups to prevent data loss.
 
