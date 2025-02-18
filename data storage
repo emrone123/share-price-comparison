@@ -1,24 +1,12 @@
-package storage;
+package adapters;
 
 import core.SharePrice;
 import java.util.List;
 
 /**
- * Interface for storing and retrieving share price data.
+ * Interface for data storage operations.
  */
 public interface DataStorage {
-    /**
-     * Saves a list of SharePrice objects.
-     *
-     * @param prices List of SharePrice objects to save
-     */
-    void savePrices(List<SharePrice> prices);
-
-    /**
-     * Retrieves saved SharePrice objects for a given symbol.
-     *
-     * @param symbol Stock symbol
-     * @return List of SharePrice objects
-     */
-    List<SharePrice> getPrices(String symbol);
+    void saveSharePrices(List<SharePrice> prices);
+    List<SharePrice> loadSharePrices(String symbol);
 }
