@@ -1,5 +1,6 @@
-User Stories and Detailed Requirements
-User Stories
+#User Stories and Detailed Requirements
+
+##User Stories
 
 As an investor, I want to register and log in to the website application so that I can access my personal data.
 
@@ -12,14 +13,7 @@ share price data, and I want to generate custom risk reports that can be easily 
 
 As a financial analyst,I want to view time-series graphs of daily share prices for one or two companies so that I can compare their performance.
 
-
-
-
-
-
-
-
-RRequirements Clearly Identified and Scoped (5 Marks)
+**Requirements Clearly Identified and Scoped**
 
 As an investor, I want to register and log in to the website application so that I can access my personal data.
 As a corporate decision maker, I want the website application to store the retrieved data so I can access it.
@@ -28,14 +22,14 @@ As a risk manager, I want the application to provide tools for assessing market 
 and I want to generate custom risk reports that can be easily shared with stakeholders.
 As a financial analyst, I want to view time-series graphs of daily share prices for one or two companies so that I can compare their performance.
 
-Functional Requirements
+**Functional Requirements**
 User Registration: Allow investors to register and access personal data.
 Data Persistence: Enable corporate decision makers to store and access retrieved data.
 Error Handling: Provide market researchers with error handling and informative messages.
 Risk Tools: Offer risk managers tools to assess market risks and generate custom reports.
 Graphing: Enable financial analysts to view and compare time-series graphs of daily share prices.
 
-Non-Functional Requirements
+**Non-Functional Requirements**
 Usability: Ensure the application is user-friendly and intuitive.
 Performance: Optimize the application for quick and efficient responses.
 Scalability: Design the application to handle growth in users and data volume.
@@ -43,37 +37,34 @@ Security: Implement robust security measures to protect user data.
 Reliability: Ensure high availability with minimal downtime.
 Maintainability: Develop a well-organized codebase for easy updates and maintenance.
 
+##Requirements Investigated in Detail with Careful Consideration of All Aspects
 
-
-
-Requirements Investigated in Detail with Careful Consideration of All Aspects (10 Marks)
-
-Investor
+**Investor**
 
 Context: Investors need secure access to their personal data and the ability to register and log in to the application.
 Challenges: Ensuring secure and safe authentication and protecting user data from unauthorized access.
 Solutions: Implement robust password hashing (e.g., bcrypt) and secure session management to protect user credentials. Use encryption.
 
-Corporate Decision Maker
+**Corporate Decision Maker**
 
 Context: Corporate decision makers require reliable storage and retrieval of historical share price data for analysis.
 Challenges: Ensuring data integrity and efficient data retrieval, especially with large datasets.
 Solutions: Use a robust relational database with indexing and caching mechanisms to improve performance. Implement regular backups to prevent data loss.
 
-Market Researcher
+**Market Researcher**
 
 Context: Market researchers need the application to handle errors to ensure the correct data is given.
 Challenges: Network instability can affect data retrieval, leading to user frustration.
 Solutions: Implement local caching to store data temporarily during network outages. Use retry mechanisms to attempt data retrieval multiple times. Provide clear, user-friendly error messages.
 
-Risk Manager
+**Risk Manager**
 
 Context: Risk managers need tools to assess market risks based on historical share price data.
 Challenges: Processing large volumes of historical data and applying complex statistical models.
 Solutions: Use data aggregation techniques to handle large datasets. Implement statistical models like VaR and CVaR to assess volatility. 
 Provide customizable risk assessment parameters through an intuitive interface.
 
-Financial Analyst
+**Financial Analyst**
 
 Context: Financial analysts require graphical tools to visualise and compare share price data.
 Challenges: Ensuring smooth performance with large datasets and providing interactive features.
@@ -82,13 +73,13 @@ Allow customization of graph settings and comparison of multiple datasets.
 
 
 
-Requirements Organised and Presented Effectively (5 Marks)
+**Requirements Organised and Presented Effectively**
 
 •	Dependencies: Dependencies between requirements have been identified, such as the need to fetch data before it can be stored or displayed, ensuring a logical development sequence.
 •	Prioritisation Matrix: A prioritisation matrix has been created to guide resource allocation and task scheduling. High-priority requirements, such as data fetching and storage, are marked as critical due to their foundational nature. Medium-priority requirements, including input validation and error handling, are also essential but offer more flexibility in implementation timing.
 
 
-Requirements Aligned to Overall Goals of Project (5 Marks)
+**Requirements Aligned to Overall Goals of Project**
 
 •	User Authentication: Supports secure access to personal data and preferences.
 •	Data Storage: Enhances usability by allowing offline access to data.
