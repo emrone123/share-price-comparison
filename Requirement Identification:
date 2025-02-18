@@ -1,18 +1,16 @@
 User Stories and Detailed Requirements
 User Stories
-As an investor, I want to register and log in to the website application so that I can access my personal data and preferences.
 
-As a corporate decision maker, I want the website application to store the retrieved data locally so that I can access it.
+As an investor, I want to register and log in to the website application so that I can access my personal data.
 
-As a student, I want to view time-series graphs of daily share prices for one or two companies so that I can compare their performance.
-
-As a investor, I want the application to validate my inputs to ensure they are correct and logical.
+As a corporate decision maker, I want the website application to store the retrieved data so I can access it.
 
 As a market researcher, I want the application to handle errors and provide error messages.
 
-As a corporate decision maker, I want to customise my preferences and save my custom graphs for future reference.
+As a risk manager, I want the application to provide tools for assessing market risks based on historical
+share price data, and I want to generate custom risk reports that can be easily shared with stakeholders.
 
-As a financial analyst, I want the application to be secure and protect my data privacy.
+As a financial analyst,I want to view time-series graphs of daily share prices for one or two companies so that I can compare their performance.
 
 
 
@@ -55,13 +53,15 @@ e.	Implementation of robust error handling to manage API errors effectively and 
 User Interface:
 f.	Design of an intuitive and responsive user interface that works well on all devices, enhancing user experience.
 User Preferences:
-g.	Implementation of features for customizing user preferences and saving custom graphs, providing flexibility and convenience.
+Implementation of features for customizing user preferences and saving custom graphs, providing flexibility and convenience.
 Security:
-h.	Implementation of data encryption and secure authentication methods to protect users' sensitive information and ensure compliance with data privacy regulations.
+Implementation of data encryption and secure authentication methods to protect users' sensitive information and ensure compliance with data privacy regulations.
+
 Requirements Organized and Presented Effectively (5 Marks)
 The requirements have been organized and presented in a clear, structured manner to facilitate understanding and implementation:
 •	Dependencies: Dependencies between requirements have been identified, such as the need to fetch data before it can be stored or displayed, ensuring a logical development sequence.
 •	Prioritisation Matrix: A prioritisation matrix has been created to guide resource allocation and task scheduling. High-priority requirements, such as data fetching and storage, are marked as critical due to their foundational nature. Medium-priority requirements, including input validation and error handling, are also essential but offer more flexibility in implementation timing.
+
 Requirements Aligned to Overall Goals of Project (5 Marks)
 All identified requirements are closely aligned with the project's overall goals, which focus on building a robust, scalable, and user-friendly Share Price Comparison Web Application:
 •	User Authentication: Supports secure access to personal data and preferences.
