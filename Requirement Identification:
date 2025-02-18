@@ -20,8 +20,7 @@ As a financial analyst,I want to view time-series graphs of daily share prices f
 
 
 Requirements Clearly Identified and Scoped (5 Marks)
-The requirements for the Share Price Comparison Web Application have been clearly identified and scoped to ensure the project remains focused and deliverable within the defined constraints. The primary functional requirements include:
-User Authentication:
+
 As an investor, I want to register and log in to the website application so that I can access my personal data.
 As a corporate decision maker, I want the website application to store the retrieved data so I can access it.
 As a market researcher, I want the application to handle errors and provide error messages.
@@ -34,8 +33,7 @@ As a financial analyst, I want to view time-series graphs of daily share prices 
 
 
 Requirements Investigated in Detail with Careful Consideration of All Aspects (10 Marks)
-Each requirement has been thoroughly investigated to ensure all aspects are carefully considered and feasible within the project constraints:
-User Authentication:
+
 a.	Implementation of user registration and login functionalities to provide secure access to personal data and preferences.
 Data Storage:
 b.	Local storage of retrieved data to allow users to access it offline, enhancing usability and ensuring data availability.
@@ -53,12 +51,12 @@ Security:
 Implementation of data encryption and secure authentication methods to protect users' sensitive information and ensure compliance with data privacy regulations.
 
 Requirements Organized and Presented Effectively (5 Marks)
-The requirements have been organized and presented in a clear, structured manner to facilitate understanding and implementation:
+
 •	Dependencies: Dependencies between requirements have been identified, such as the need to fetch data before it can be stored or displayed, ensuring a logical development sequence.
 •	Prioritisation Matrix: A prioritisation matrix has been created to guide resource allocation and task scheduling. High-priority requirements, such as data fetching and storage, are marked as critical due to their foundational nature. Medium-priority requirements, including input validation and error handling, are also essential but offer more flexibility in implementation timing.
 
 Requirements Aligned to Overall Goals of Project (5 Marks)
-All identified requirements are closely aligned with the project's overall goals, which focus on building a robust, scalable, and user-friendly Share Price Comparison Web Application:
+
 •	User Authentication: Supports secure access to personal data and preferences.
 •	Data Storage: Enhances usability by allowing offline access to data.
 •	Graph Display: Provides a visual tool for comparing share prices, aiding in analysis and decision-making.
