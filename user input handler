@@ -1,0 +1,10 @@
+package ui;
+
+/**
+ * Handles user inputs for the application.
+ */
+public class UserInputHandler {
+    public void handleUserInput() {
+        // Input handling implementation
+    }
+}
