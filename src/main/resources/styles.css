@@ -1,0 +1,33 @@
+.root {
+    -fx-background-color: #f0f0f0; /* Light grey background */
+}
+
+.label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Dark grey text */
+}
+
+.button {
+    -fx-background-color: #4CAF50; /* Green background */
+    -fx-text-fill: white; /* White text */
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.table-view {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-border-color: #dddddd; /* Light grey border */
+}
+
+.chart {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-border-color: #dddddd; /* Light grey border */
+}
+
+.text-area {
+    -fx-font-family: 'monospace';
+    -fx-background-color: #eeeeee; /* Light grey background */
+    -fx-text-fill: #333333; /* Dark grey text */
+} 

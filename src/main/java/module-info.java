@@ -2,6 +2,7 @@ module com.stockmonitor {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
+    requires java.sql;
     
     exports com.stockmonitor.app;
     exports com.stockmonitor.core;
