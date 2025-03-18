@@ -42,6 +42,7 @@ public class Main extends Application {
         
         // Create and set the scene
         Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         primaryStage.setTitle("Stock Monitor Application");
         primaryStage.setScene(scene);
         primaryStage.show();
