@@ -1,0 +1,64 @@
++-------------------+       owns       +-------------------+
+|       User        |<>--------------->|     Portfolio     |
++-------------------+       1:N        +-------------------+
+| id: String        |                  | id: String        |
+| username: String  |                  | name: String      |
+| email: String     |                  | totalValue: Double|
+| role: Enum        |                  | creationDate: Date|
+| preferences: Object|                 | lastUpdated: Date |
++-------------------+                  +-------------------+
+         ^                                      |
+         |                                      | contains
+         | configures                           | 1:N
+         | 1:N                                  v
+         |                              +-------------------+
+         |                              |    Transaction    |
++-------------------+                  +-------------------+
+|      Alert        |                  | id: String        |
++-------------------+                  | type: BUY/SELL    |
+| id: String        |                  | stockSymbol: String|
+| type: Enum        |                  | quantity: Integer |
+| stockSymbol: String|                 | price: Double     |
+| targetPrice: Double|                 | date: Date        |
+| status: Enum      |                  | fee: Double       |
+| creationDate: Date|                  +-------------------+
+| triggered: Boolean|
++-------------------+
+         ^                                      ^
+         |                                      |
+         | triggers                             | tracks
+         | 1:N                                  | 1:N
+         |                                      |
++-------------------+       generates   +-------------------+
+|      Stock        |>--------------->|    MarketData     |
++-------------------+       1:N        +-------------------+
+| symbol: String    |                  | timestamp: Date   |
+| name: String      |                  | stockSymbol: String|
+| currentPrice: Double|                | openPrice: Double |
+| previousClose: Double|               | highPrice: Double |
+| volume: Integer   |                  | lowPrice: Double  |
+| marketCap: Double |                  | closePrice: Double|
++-------------------+                  | volume: Integer   |
+         ^                             +-------------------+
+         |
+         | monitors
+         | 1:N
+         |
++-------------------+       manages    +-------------------+
+|     WatchList     |<-----------------|       User        |
++-------------------+       1:N        +-------------------+
+| id: String        |
+| name: String      |
+| stockSymbols: Array|
+| creationDate: Date|
++-------------------+
+
++-------------------+       belongs to +-------------------+
+|      Report       |----------------->|       User        |
++-------------------+       N:1        +-------------------+
+| id: String        |
+| type: Enum        |       analyzes
+| generationDate: Date|>--------------->+-------------------+
+| data: Object      |       N:1        |     Portfolio     |
+| format: String    |                  +-------------------+
++-------------------+ 

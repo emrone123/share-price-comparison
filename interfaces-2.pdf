@@ -1,0 +1,274 @@
+STOCK MONITOR SYSTEM INTERFACES
+==================================
+
+Version: 2.0
+Date: May 2024
+
+SYSTEM INTERFACE ARCHITECTURE
+==================================
+
+The Stock Monitor system implements a clean architecture with clearly defined interfaces
+separating the various system components. This document outlines the key interfaces
+that enable communication between components.
+
+MODULE STRUCTURE
+----------------------------------
+```java
+module com.stockmonitor {
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires javafx.graphics;
+    
+    exports com.stockmonitor.app;
+    exports com.stockmonitor.core;
+    exports com.stockmonitor.interfaces;
+    exports com.stockmonitor.abstracts;
+    exports com.stockmonitor.collectors;
+    exports com.stockmonitor.database;
+    exports com.stockmonitor.display;
+    exports com.stockmonitor.logging;
+    exports com.stockmonitor.monitoring;
+    exports com.stockmonitor.pricing;
+}
+```
+
+CORE INTERFACES
+==================================
+
+1. IApplication
+----------------------------------
+Purpose: Main application entry point
+
+Methods:
+- void run(): Starts the application and initializes all components
+
+Implementation Example:
+```java
+public class StockMonitorApplication implements IApplication {
+    @Override
+    public void run() {
+        // Initialize components
+        // Set up UI
+        // Start services
+    }
+}
+```
+
+2. IDataCollector
+----------------------------------
+Purpose: Handles collection of data from external sources
+
+Methods:
+- void collectData(): Retrieves stock data from external APIs
+
+Implementation Example:
+```java
+public class YahooFinanceCollector implements IDataCollector {
+    private String apiKey;
+    
+    public YahooFinanceCollector(String apiKey) {
+        this.apiKey = apiKey;
+    }
+    
+    @Override
+    public void collectData() {
+        // Connect to Yahoo Finance API
+        // Retrieve stock data
+        // Process and return data
+    }
+}
+```
+
+3. IDataBase
+----------------------------------
+Purpose: Manages data persistence operations
+
+Methods:
+- void saveData(String data): Stores data in the database
+- String fetchData(): Retrieves data from the database
+
+Implementation Example:
+```java
+public class PostgresDatabase implements IDataBase {
+    private Connection dbConnection;
+    
+    @Override
+    public void saveData(String data) {
+        // Store data in PostgreSQL database
+    }
+    
+    @Override
+    public String fetchData() {
+        // Retrieve data from PostgreSQL database
+        return data;
+    }
+}
+```
+
+4. IStockMonitoring
+----------------------------------
+Purpose: Handles stock price monitoring activities
+
+Methods:
+- void monitorStockPrices(): Initiates the stock price monitoring process
+
+Implementation Example:
+```java
+public class RealTimeStockMonitor implements IStockMonitoring {
+    private List<String> stockSymbols;
+    
+    @Override
+    public void monitorStockPrices() {
+        // Set up WebSocket connection
+        // Monitor real-time stock price changes
+        // Trigger alerts when conditions are met
+    }
+}
+```
+
+5. IChartDisplay
+----------------------------------
+Purpose: Manages the visualization of stock data
+
+Methods:
+- void displayChart(): Shows visual representation of stock data
+
+Implementation Example:
+```java
+public class CandlestickChartDisplay implements IChartDisplay {
+    private String chartType;
+    
+    public CandlestickChartDisplay(String chartType) {
+        this.chartType = chartType;
+    }
+    
+    @Override
+    public void displayChart() {
+        // Create and display a candlestick chart
+        // Render using JavaFX
+    }
+}
+```
+
+6. ILoggingData
+----------------------------------
+Purpose: Handles system logging
+
+Methods:
+- void log(String message): Records system events and messages
+
+Implementation Example:
+```java
+public class FileLogger implements ILoggingData {
+    private String logFilePath;
+    
+    @Override
+    public void log(String message) {
+        // Write log message to file
+        // Include timestamp and severity
+    }
+}
+```
+
+7. IStockPrices
+----------------------------------
+Purpose: Manages stock price information
+
+Methods:
+- void updateStockPrice(double price): Updates the current price of a stock
+- double getCurrentPrice(): Retrieves the current price of a stock
+
+Implementation Example:
+```java
+public class AlphaVantageStockPrices implements IStockPrices {
+    private String stockSymbol;
+    private double currentPrice;
+    
+    public AlphaVantageStockPrices(String stockSymbol) {
+        this.stockSymbol = stockSymbol;
+    }
+    
+    @Override
+    public void updateStockPrice(double price) {
+        this.currentPrice = price;
+        // Notify listeners of price update
+    }
+    
+    @Override
+    public double getCurrentPrice() {
+        return currentPrice;
+    }
+}
+```
+
+INTERFACE LAYER ARCHITECTURE
+==================================
+
+                      +------------------+
+                      |   UI Components  |
+                      +--------+---------+
+                               |
+                               v
+           +------------------+----------------+
+           |                                   |
++----------v-----------+        +--------------v-------------+
+|    IChartDisplay     |        |        IApplication        |
++----------------------+        +----------------------------+
+                                              |
+                                              v
+                +--------------------------+----------------------+
+                |                          |                      |
+        +-------v-------+          +-------v--------+    +-------v--------+
+        | IDataCollector |          | IStockMonitoring|    |   IStockPrices  |
+        +---------------+          +----------------+    +----------------+
+                |                          |                      |
+                v                          v                      v
+        +---------------+          +----------------+    +----------------+
+        |   IDataBase   |          |  ILoggingData  |    |                |
+        +---------------+          +----------------+    |                |
+                                                         |                |
+
+IMPLEMENTATION PATTERN
+==================================
+
+The system follows a three-layer implementation pattern:
+
+1. Interfaces: Define contracts (shown above)
+2. Abstract Classes: Provide partial implementations
+3. Concrete Classes: Implement specific behavior
+
+Example Abstract Classes:
+- AbstractDataCollector
+- AbstractLogger
+- AbstractChartDisplay
+
+These abstract classes implement the interfaces and provide common functionality,
+while concrete implementations handle specific behaviors.
+
+INTERFACE INTERACTIONS
+==================================
+
+1. User Interaction Flow:
+   UI → IApplication → IChartDisplay
+   
+2. Data Flow:
+   IDataCollector → IDataBase → IStockPrices → IChartDisplay
+   
+3. Monitoring Flow:
+   IStockMonitoring → IStockPrices → ILoggingData
+   
+4. Alert Flow:
+   IStockMonitoring → IStockPrices → Notification System → UI
+
+EXTENSION POINTS
+==================================
+
+The interface-based architecture allows for easy extension:
+
+1. New Data Sources: Implement IDataCollector
+2. Different Databases: Implement IDataBase
+3. Alternative Visualizations: Implement IChartDisplay
+4. Additional Logging Methods: Implement ILoggingData
+
+This approach enables flexible component swapping and testing without
+modifying the core application logic. 

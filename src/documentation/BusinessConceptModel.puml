@@ -1,0 +1,98 @@
+@startuml StockMonitor Business Concept Model
+
+' Style definitions
+skinparam class {
+    BackgroundColor LightBlue
+    ArrowColor DarkBlue
+    BorderColor DarkBlue
+}
+skinparam linetype ortho
+
+' Core business entities
+class "Stock" as Stock {
+    symbol: String
+    name: String
+    currentPrice: Double
+    previousClose: Double
+    volume: Integer
+    marketCap: Double
+}
+
+class "User" as User {
+    id: String
+    username: String
+    email: String
+    role: Enum
+    preferences: Object
+}
+
+class "Portfolio" as Portfolio {
+    id: String
+    name: String
+    totalValue: Double
+    creationDate: Date
+    lastUpdated: Date
+}
+
+class "Transaction" as Transaction {
+    id: String
+    type: Enum (BUY/SELL)
+    stockSymbol: String
+    quantity: Integer
+    price: Double
+    date: Date
+    fee: Double
+}
+
+class "Alert" as Alert {
+    id: String
+    type: Enum
+    stockSymbol: String
+    targetPrice: Double
+    status: Enum
+    creationDate: Date
+    triggered: Boolean
+}
+
+class "MarketData" as MarketData {
+    timestamp: Date
+    stockSymbol: String
+    openPrice: Double
+    highPrice: Double
+    lowPrice: Double
+    closePrice: Double
+    volume: Integer
+}
+
+class "WatchList" as WatchList {
+    id: String
+    name: String
+    stockSymbols: Array
+    creationDate: Date
+}
+
+class "Report" as Report {
+    id: String
+    type: Enum
+    generationDate: Date
+    data: Object
+    format: String
+}
+
+' Relationships
+User "1" -- "0..*" Portfolio : owns
+User "1" -- "0..*" WatchList : manages
+User "1" -- "0..*" Alert : configures
+
+Portfolio "1" -- "0..*" Transaction : contains
+Portfolio "1" -- "0..*" Stock : tracks
+
+WatchList "1" -- "0..*" Stock : monitors
+
+Stock "1" -- "0..*" MarketData : generates
+Stock "1" -- "0..*" Alert : triggers
+
+Report "0..*" -- "1" Portfolio : analyzes
+Report "0..*" -- "1" User : belongs to
+
+@enduml 
