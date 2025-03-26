@@ -1,26 +1,22 @@
-package com.stockmonitor.collectors;
+package com.stockmonitor.frameworks.service;
 
 import com.stockmonitor.domain.StockPrice;
-import com.stockmonitor.interfaces.IDataCollector;
-
+import com.stockmonitor.interfaces.service.IStockDataService;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class DataCollector implements IDataCollector {
-    // Using your Alpha Vantage API key
+// SRP: Responsible only for fetching stock data
+public class YahooFinanceService implements IStockDataService {
+    // Alpha Vantage API key
     private static final String API_KEY = "655AOTU3KF8G1HEC";
     
     @Override
-    public void collectData() {
-        System.out.println("Collecting stock data...");
-    }
-    
     public List<StockPrice> fetchStockData(String symbol, LocalDate startDate, LocalDate endDate) {
         List<StockPrice> stockPrices = new ArrayList<>();
         
@@ -32,7 +28,7 @@ public class DataCollector implements IDataCollector {
                             "&datatype=csv" +
                             "&apikey=" + API_KEY;
             
-            System.out.println("Fetching data from: " + apiUrl);
+            System.out.println("Fetching data from Alpha Vantage for " + symbol);
             
             URL url = new URL(apiUrl);
             URLConnection connection = url.openConnection();
@@ -49,30 +45,37 @@ public class DataCollector implements IDataCollector {
                     
                     String[] data = line.split(",");
                     if (data.length >= 5) {
-                        LocalDate date = LocalDate.parse(data[0]);
-                        
-                        // Only include data within the date range
-                        if (!date.isBefore(startDate) && !date.isAfter(endDate)) {
-                            double price = Double.parseDouble(data[4]); // Close price
-                            stockPrices.add(new StockPrice(symbol, price, date));
+                        try {
+                            LocalDate date = LocalDate.parse(data[0]);
+                            
+                            // Only include data within the date range
+                            if (!date.isBefore(startDate) && !date.isAfter(endDate)) {
+                                double price = Double.parseDouble(data[4]); // Close price
+                                stockPrices.add(new StockPrice(symbol, price, date));
+                            }
+                        } catch (Exception e) {
+                            System.err.println("Error parsing line: " + line);
                         }
                     }
                 }
             }
             
-            System.out.println("Successfully fetched data for " + symbol + ", got " + stockPrices.size() + " data points");
+            System.out.println("Successfully fetched " + stockPrices.size() + " data points for " + symbol);
         } catch (Exception e) {
             System.err.println("Error fetching stock data: " + e.getMessage());
-            e.printStackTrace();
             
-            // Provide sample data for demonstration in case of API failure
+            // Provide sample data as fallback
             System.out.println("Using sample data for " + symbol);
+            Random random = new Random();
+            double basePrice = 100.0;
+            
             for (int i = 0; i < 30; i++) {
                 LocalDate date = startDate.plusDays(i);
                 if (date.isAfter(endDate)) break;
                 
-                double price = 100 + Math.random() * 20; // Random price between 100-120
-                stockPrices.add(new StockPrice(symbol, price, date));
+                // Generate some random price movements
+                basePrice = basePrice * (1 + (random.nextDouble() - 0.5) * 0.02);
+                stockPrices.add(new StockPrice(symbol, basePrice, date));
             }
         }
         
