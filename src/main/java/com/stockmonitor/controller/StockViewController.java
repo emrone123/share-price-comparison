@@ -3,100 +3,100 @@ package com.stockmonitor.controller;
 import com.stockmonitor.domain.StockPrice;
 import com.stockmonitor.service.StockDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Web MVC Controller for stock views
+ * Web controller for stock comparison views
  * 
- * This follows:
- * - MVC Pattern: Controller part of Model-View-Controller
- * - Adapter Pattern: Adapts HTTP requests to service calls
- * - Layered Architecture: Controller layer that communicates with service layer
+ * SOA PRINCIPLE: Service Abstraction and Encapsulation
+ * This controller abstracts the web presentation layer from the service layer,
+ * providing a clean separation of concerns between presentation and business logic.
+ * 
+ * SOA PRINCIPLE: Service Composability
+ * The controller composes with the StockDataService to create a higher-level
+ * service capability for the web interface.
  */
 @Controller
 public class StockViewController {
-    
+
     private final StockDataService stockDataService;
-    
+
+    /**
+     * SOA PRINCIPLE: Service Loose Coupling
+     * Dependency injection enables loose coupling between this controller and
+     * the service implementation, allowing for different implementations to be
+     * substituted without changing the controller code.
+     */
     @Autowired
     public StockViewController(StockDataService stockDataService) {
         this.stockDataService = stockDataService;
     }
-    
+
     /**
-     * Home page
+     * SOA PRINCIPLE: Service Contract
+     * This endpoint provides a clear contract for accessing the home page view.
      */
     @GetMapping("/")
-    public String home(Model model) {
-        // Add some popular stocks for quick selection
-        model.addAttribute("popularStocks", List.of("AAPL", "MSFT", "GOOGL", "AMZN"));
-        
-        // Default date range
-        LocalDate endDate = LocalDate.now();
-        LocalDate startDate = endDate.minusMonths(1);
-        model.addAttribute("startDate", startDate);
-        model.addAttribute("endDate", endDate);
-        
+    public String home() {
         return "index";
     }
-    
+
     /**
-     * Compare stocks page
+     * SOA PRINCIPLE: Service Interoperability and Reusability
+     * This controller method integrates with the service layer and transforms
+     * the data into a format suitable for the view layer, providing a reusable
+     * capability accessible via standard web protocols.
+     * 
+     * SOA PRINCIPLE: Service Orchestration
+     * This method orchestrates multiple service calls to provide a cohesive view
+     * for stock price comparison.
      */
-    @GetMapping("/compare")
+    @PostMapping("/compare")
     public String compareStocks(
-            @RequestParam(required = false) String symbol1,
-            @RequestParam(required = false) String symbol2,
-            @RequestParam(required = false) LocalDate startDate,
-            @RequestParam(required = false) LocalDate endDate,
+            @RequestParam String symbol1,
+            @RequestParam String symbol2,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
             Model model) {
         
-        // Set default values if not provided
-        symbol1 = (symbol1 != null && !symbol1.isEmpty()) ? symbol1 : "AAPL";
-        symbol2 = (symbol2 != null && !symbol2.isEmpty()) ? symbol2 : "MSFT";
-        endDate = (endDate != null) ? endDate : LocalDate.now();
-        startDate = (startDate != null) ? startDate : endDate.minusMonths(1);
-        
-        // Get stock data
         List<StockPrice> stockData1 = stockDataService.fetchStockData(symbol1, startDate, endDate);
         List<StockPrice> stockData2 = stockDataService.fetchStockData(symbol2, startDate, endDate);
         
-        // Add data to model
         model.addAttribute("symbol1", symbol1);
         model.addAttribute("symbol2", symbol2);
-        model.addAttribute("startDate", startDate);
-        model.addAttribute("endDate", endDate);
         model.addAttribute("stockData1", stockData1);
         model.addAttribute("stockData2", stockData2);
-        
-        // Add some popular stocks for quick selection
-        model.addAttribute("popularStocks", List.of("AAPL", "MSFT", "GOOGL", "AMZN"));
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
         
         return "compare";
     }
-    
+
     /**
-     * Submit form for stock comparison
+     * SOA PRINCIPLE: Service Discoverability
+     * This endpoint has a clear, intuitive URL path that makes it easily
+     * discoverable for clients that need stock comparison functionality.
      */
-    @PostMapping("/compare")
-    public String submitCompareForm(
+    @GetMapping("/compare")
+    public String compareStocksGet(
             @RequestParam String symbol1,
-            @RequestParam String symbol2,
-            @RequestParam LocalDate startDate,
-            @RequestParam LocalDate endDate) {
+            @RequestParam(required = false) String symbol2,
+            Model model) {
         
-        // Redirect to GET endpoint with parameters
-        return "redirect:/compare?symbol1=" + symbol1 + 
-               "&symbol2=" + symbol2 + 
-               "&startDate=" + startDate + 
-               "&endDate=" + endDate;
+        LocalDate endDate = LocalDate.now();
+        LocalDate startDate = endDate.minusMonths(1);
+        
+        // Default to MSFT if symbol2 is not provided
+        if (symbol2 == null || symbol2.isEmpty()) {
+            symbol2 = "MSFT";
+        }
+        
+        return compareStocks(symbol1, symbol2, startDate, endDate, model);
     }
 } 

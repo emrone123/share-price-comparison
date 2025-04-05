@@ -11,12 +11,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * REST API Controller for stock price data
+ * REST API Controller for Stock Data
  * 
- * This follows:
- * - MVC Pattern: Controller part of Model-View-Controller
- * - Adapter Pattern: Adapts HTTP requests to service calls
- * - SOA: Exposes service functionalities as REST APIs
+ * SOA PRINCIPLE: Service Contract
+ * This controller exposes a well-defined API contract for accessing stock data
+ * through standardized HTTP methods and endpoints.
+ * 
+ * SOA PRINCIPLE: Service Abstraction
+ * The controller abstracts the implementation details and provides a simplified
+ * interface for clients to interact with the stock data service.
  */
 @RestController
 @RequestMapping("/api/stocks")
@@ -24,18 +27,24 @@ public class StockApiController {
     
     private final StockDataService stockDataService;
     
+    /**
+     * SOA PRINCIPLE: Service Composability
+     * The controller composes with the StockDataService through dependency injection,
+     * allowing for flexible composition of different service implementations.
+     */
     @Autowired
     public StockApiController(StockDataService stockDataService) {
         this.stockDataService = stockDataService;
     }
     
     /**
-     * Get stock data for a given symbol and date range
+     * SOA PRINCIPLE: Service Interoperability
+     * This RESTful endpoint provides a standard HTTP interface that can be
+     * consumed by any client regardless of platform or programming language.
      * 
-     * @param symbol Stock symbol
-     * @param startDate Start date
-     * @param endDate End date
-     * @return List of stock prices
+     * SOA PRINCIPLE: Service Statelessness
+     * The endpoint is stateless, with all necessary information (symbol, startDate, endDate)
+     * passed in each request, allowing for scalability and reliability.
      */
     @GetMapping("/{symbol}")
     public ResponseEntity<List<StockPrice>> getStockData(
@@ -95,5 +104,15 @@ public class StockApiController {
             public final List<StockPrice> data1 = stockData1;
             public final List<StockPrice> data2 = stockData2;
         });
+    }
+
+    /**
+     * SOA PRINCIPLE: Service Reusability
+     * This API endpoint can be reused by multiple client applications,
+     * providing a standard way to save stock price data.
+     */
+    @PostMapping
+    public StockPrice saveStockPrice(@RequestBody StockPrice stockPrice) {
+        return stockDataService.saveStockPrice(stockPrice);
     }
 } 

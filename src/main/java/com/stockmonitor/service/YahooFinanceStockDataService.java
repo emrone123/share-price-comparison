@@ -21,6 +21,14 @@ import java.util.Random;
  * - Adapter Pattern: Adapts Yahoo Finance API to our domain model
  * - Service Layer Pattern: Part of the service layer in N-tier architecture
  * - SOA: Implements a clearly defined service
+ * 
+ * SOA PRINCIPLE: Service Abstraction
+ * This service encapsulates the complexity of external stock data retrieval
+ * and provides a simple interface to the rest of the application.
+ * 
+ * SOA PRINCIPLE: Service Autonomy
+ * This service operates independently and maintains its own state and logic,
+ * with clear boundaries from other components.
  */
 @Service
 public class YahooFinanceStockDataService implements StockDataService {
@@ -30,11 +38,21 @@ public class YahooFinanceStockDataService implements StockDataService {
     
     private final StockPriceRepository stockPriceRepository;
     
+    /**
+     * SOA PRINCIPLE: Service Composability
+     * This service is composed with other services through dependency injection,
+     * allowing for flexible composition and reuse.
+     */
     @Autowired
     public YahooFinanceStockDataService(StockPriceRepository stockPriceRepository) {
         this.stockPriceRepository = stockPriceRepository;
     }
 
+    /**
+     * SOA PRINCIPLE: Service Contract
+     * This method represents a well-defined contract with clear inputs and outputs,
+     * enabling other components to interact with this service without knowledge of its internal implementation.
+     */
     @Override
     public List<StockPrice> fetchStockData(String symbol, LocalDate startDate, LocalDate endDate) {
         logger.info("Fetching stock data for {} from {} to {}", symbol, startDate, endDate);
@@ -58,6 +76,11 @@ public class YahooFinanceStockDataService implements StockDataService {
         return generatedData;
     }
     
+    /**
+     * SOA PRINCIPLE: Service Reusability
+     * This method provides reusable functionality that can be used by multiple
+     * consumers for saving stock prices, promoting code reuse.
+     */
     @Override
     public StockPrice saveStockPrice(StockPrice stockPrice) {
         return stockPriceRepository.save(stockPrice);
@@ -74,8 +97,13 @@ public class YahooFinanceStockDataService implements StockDataService {
     }
     
     /**
-     * Scheduled job to update stock data for commonly used symbols
-     * Demonstrates the use of the Observer pattern through Spring's scheduling
+     * SOA PRINCIPLE: Service Loose Coupling
+     * This scheduled method shows loose coupling as it operates independently
+     * and doesn't directly depend on other components.
+     * 
+     * SOA PRINCIPLE: Service Discoverability
+     * The method is scheduled and automatically discovered by Spring's component scanning,
+     * making it available without explicit reference.
      */
     @Scheduled(fixedRate = 60000)
     public void scheduledStockUpdate() {

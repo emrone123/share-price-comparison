@@ -8,25 +8,31 @@ import java.util.List;
 /**
  * Service interface for stock data operations
  * 
- * This follows the SOA principles by defining a clear service contract.
- * Part of the service layer in the N-tier architecture.
- * Also implements the Interface Segregation Principle from SOLID.
+ * SOA PRINCIPLE: Service Contract
+ * This interface defines a clear contract for stock data services,
+ * specifying the available operations without exposing implementation details.
+ * 
+ * SOA PRINCIPLE: Service Abstraction
+ * The interface abstracts the underlying stock data retrieval mechanisms,
+ * hiding the complexity from service consumers.
+ * 
+ * SOA PRINCIPLE: Service Loose Coupling
+ * By defining this interface, we ensure loose coupling between components,
+ * as consumers depend on the abstraction rather than concrete implementations.
  */
 public interface StockDataService {
     
     /**
-     * Fetch stock data for a given symbol and date range
-     * @param symbol Stock symbol
-     * @param startDate Start date
-     * @param endDate End date
-     * @return List of stock prices
+     * SOA PRINCIPLE: Service Autonomy
+     * Each service method represents a self-contained operation that can be
+     * executed independently with clearly defined inputs and outputs.
      */
     List<StockPrice> fetchStockData(String symbol, LocalDate startDate, LocalDate endDate);
     
     /**
-     * Save stock price data
-     * @param stockPrice Stock price to save
-     * @return Saved stock price
+     * SOA PRINCIPLE: Service Reusability
+     * These operations are designed to be reusable across different parts
+     * of the application or by external clients.
      */
     StockPrice saveStockPrice(StockPrice stockPrice);
     
@@ -38,9 +44,9 @@ public interface StockDataService {
     List<StockPrice> saveAllStockPrices(List<StockPrice> stockPrices);
     
     /**
-     * Get the latest stock price for a symbol
-     * @param symbol Stock symbol
-     * @return Latest stock price
+     * SOA PRINCIPLE: Service Discoverability
+     * The clear method naming and purpose make this service easy to discover
+     * and understand by potential consumers.
      */
     StockPrice getLatestStockPrice(String symbol);
 } 
