@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -43,7 +44,17 @@ public class StockViewController {
      * This endpoint provides a clear contract for accessing the home page view.
      */
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+        // Add popular stocks to the model
+        List<String> popularStocks = Arrays.asList("AAPL", "MSFT", "GOOGL", "AMZN", "META", "TSLA", "NVDA");
+        model.addAttribute("popularStocks", popularStocks);
+        
+        // Set default dates
+        LocalDate endDate = LocalDate.now();
+        LocalDate startDate = endDate.minusMonths(1);
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
+        
         return "index";
     }
 
