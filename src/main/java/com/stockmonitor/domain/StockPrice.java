@@ -3,28 +3,42 @@ package com.stockmonitor.domain;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 /**
  * Domain class for storing stock price information
  * 
  * CLEAN ARCHITECTURE PRINCIPLE: Entity
  * This class represents a core business entity (StockPrice) that encapsulates
- * essential business rules and data structures. It doesn't depend on any
- * framework or external library, making it completely independent of UI, database,
- * or external services.
+ * essential business rules and data structures.
  * 
  * CLEAN ARCHITECTURE PRINCIPLE: Single Responsibility
  * This class has only one reason to change: if the definition of what constitutes
  * a stock price changes in the business domain.
  */
+@Entity
+@Table(name = "stock_prices")
 public class StockPrice {
-    // CLEAN ARCHITECTURE PRINCIPLE: Encapsulation
-    // Data fields are private with immutable core properties
-    private final String symbol;
-    private final double price;
-    private final LocalDate date;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private String symbol;
+    private double price;
+    private LocalDate date;
     private double change;
     private double percentChange;
     private long volume;
+    
+    /**
+     * Default constructor required by JPA
+     */
+    public StockPrice() {
+    }
 
     /**
      * Create a new StockPrice with symbol, price, and date
@@ -59,6 +73,51 @@ public class StockPrice {
         this.change = change;
         this.percentChange = percentChange;
         this.volume = volume;
+    }
+    
+    /**
+     * Get the ID
+     * 
+     * @return The ID
+     */
+    public Long getId() {
+        return id;
+    }
+    
+    /**
+     * Set the ID
+     * 
+     * @param id The ID
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    /**
+     * Set the symbol
+     * 
+     * @param symbol The stock symbol
+     */
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+    
+    /**
+     * Set the price
+     * 
+     * @param price The price
+     */
+    public void setPrice(double price) {
+        this.price = price;
+    }
+    
+    /**
+     * Set the date
+     * 
+     * @param date The date
+     */
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     /**

@@ -1,136 +1,112 @@
 package com.stockmonitor;
 
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import com.stockmonitor.domain.StockPrice;
+import com.stockmonitor.interfaces.service.IStockDataService;
 
 import java.time.LocalDate;
-import java.util.Random;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class SimpleStockApp extends Application {
+/**
+ * Simple Stock Application
+ * 
+ * This class has been converted from a JavaFX application to a service class
+ * that provides basic stock data functionality for the web application.
+ * 
+ * It follows:
+ * - Service-Oriented Architecture: Provides a focused, single-responsibility service
+ * - Adapter Pattern: Adapts the stock data service to the application needs
+ */
+public class SimpleStockApp {
+    private final IStockDataService stockService;
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    @Override
-    public void start(Stage primaryStage) {
-        // UI Components
-        Label titleLabel = new Label("Stock Monitoring Application");
-        titleLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
-        
-        TextField stockField1 = new TextField();
-        stockField1.setPromptText("Enter first stock symbol (e.g., AAPL)");
-        
-        TextField stockField2 = new TextField();
-        stockField2.setPromptText("Enter second stock symbol (e.g., MSFT)");
-        
-        DatePicker startDate = new DatePicker(LocalDate.now().minusMonths(1));
-        DatePicker endDate = new DatePicker(LocalDate.now());
-        
-        Button viewButton = new Button("View Stock");
-        Button compareButton = new Button("Compare Stocks");
-        
-        // Chart
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Date");
-        yAxis.setLabel("Price");
-        
-        LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("Stock Price Chart");
-        
-        // Set up actions
-        viewButton.setOnAction(e -> {
-            String symbol = stockField1.getText().toUpperCase();
-            if (symbol.isEmpty()) {
-                showAlert("Please enter a stock symbol");
-                return;
-            }
-            
-            // Clear chart and add new data
-            lineChart.getData().clear();
-            XYChart.Series<String, Number> series = generateSampleData(symbol, 30);
-            lineChart.getData().add(series);
-        });
-        
-        compareButton.setOnAction(e -> {
-            String symbol1 = stockField1.getText().toUpperCase();
-            String symbol2 = stockField2.getText().toUpperCase();
-            
-            if (symbol1.isEmpty() || symbol2.isEmpty()) {
-                showAlert("Please enter both stock symbols");
-                return;
-            }
-            
-            // Clear chart and add comparison data
-            lineChart.getData().clear();
-            XYChart.Series<String, Number> series1 = generateSampleData(symbol1, 30);
-            XYChart.Series<String, Number> series2 = generateSampleData(symbol2, 30);
-            lineChart.getData().addAll(series1, series2);
-        });
-        
-        // Layout
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10));
-        grid.setHgap(10);
-        grid.setVgap(10);
-        
-        grid.add(new Label("Stock Symbol 1:"), 0, 0);
-        grid.add(stockField1, 1, 0);
-        grid.add(new Label("Stock Symbol 2:"), 0, 1);
-        grid.add(stockField2, 1, 1);
-        grid.add(new Label("Start Date:"), 0, 2);
-        grid.add(startDate, 1, 2);
-        grid.add(new Label("End Date:"), 0, 3);
-        grid.add(endDate, 1, 3);
-        grid.add(viewButton, 0, 4);
-        grid.add(compareButton, 1, 4);
-        
-        VBox root = new VBox(10);
-        root.setPadding(new Insets(10));
-        root.getChildren().addAll(titleLabel, grid, lineChart);
-        
-        // Create scene
-        Scene scene = new Scene(root, 800, 600);
-        
-        // Set the stage
-        primaryStage.setTitle("Stock Monitoring Application");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    /**
+     * Constructor with stock service
+     * 
+     * @param stockService The stock data service to use
+     */
+    public SimpleStockApp(IStockDataService stockService) {
+        this.stockService = stockService;
     }
-    
-    private XYChart.Series<String, Number> generateSampleData(String symbol, int days) {
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName(symbol);
-        
-        Random random = new Random();
-        double lastPrice = 100 + random.nextDouble() * 50; // Starting price between 100-150
-        
-        LocalDate today = LocalDate.now();
-        for (int i = days - 1; i >= 0; i--) {
-            LocalDate date = today.minusDays(i);
-            // Add some randomness to prices but maintain a trend
-            lastPrice = lastPrice * (1 + (random.nextDouble() - 0.5) * 0.05);
-            series.getData().add(new XYChart.Data<>(date.toString(), lastPrice));
+
+    /**
+     * Get stock data for a single symbol
+     * 
+     * @param symbol Stock symbol
+     * @param startDate Start date
+     * @param endDate End date
+     * @return Map containing stock data and metadata
+     */
+    public Map<String, Object> getStockData(String symbol, LocalDate startDate, LocalDate endDate) {
+        if (startDate == null || endDate == null) {
+            startDate = LocalDate.now().minusMonths(1);
+            endDate = LocalDate.now();
         }
         
-        return series;
+        List<StockPrice> stockData = stockService.fetchStockData(symbol, startDate, endDate);
+        
+        Map<String, Object> result = new HashMap<>();
+        result.put("symbol", symbol);
+        result.put("startDate", startDate);
+        result.put("endDate", endDate);
+        result.put("stockData", stockData);
+        
+        // Calculate some simple analytics
+        if (!stockData.isEmpty()) {
+            double minPrice = Double.MAX_VALUE;
+            double maxPrice = Double.MIN_VALUE;
+            double sum = 0;
+            
+            for (StockPrice price : stockData) {
+                double p = price.getPrice();
+                minPrice = Math.min(minPrice, p);
+                maxPrice = Math.max(maxPrice, p);
+                sum += p;
+            }
+            
+            double avgPrice = sum / stockData.size();
+            
+            result.put("minPrice", minPrice);
+            result.put("maxPrice", maxPrice);
+            result.put("avgPrice", avgPrice);
+            result.put("priceRange", maxPrice - minPrice);
+        }
+        
+        return result;
     }
-    
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+
+    /**
+     * Get a list of common stock symbols
+     * 
+     * @return List of common stock symbols
+     */
+    public List<String> getCommonStocks() {
+        return List.of("AAPL", "MSFT", "GOOGL", "AMZN", "META", "TSLA", "NVDA", "JPM");
     }
-    
-    public static void main(String[] args) {
-        launch(args);
+
+    /**
+     * Extract data for charting
+     * 
+     * @param stockPrices List of stock prices
+     * @return Map containing dates and prices
+     */
+    public Map<String, List<?>> extractChartData(List<StockPrice> stockPrices) {
+        List<String> dates = new ArrayList<>();
+        List<Double> prices = new ArrayList<>();
+        
+        for (StockPrice price : stockPrices) {
+            dates.add(price.getDate().format(DATE_FORMATTER));
+            prices.add(price.getPrice());
+        }
+        
+        Map<String, List<?>> chartData = new HashMap<>();
+        chartData.put("dates", dates);
+        chartData.put("prices", prices);
+        
+        return chartData;
     }
 } 
